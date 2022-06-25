@@ -47,7 +47,7 @@
                 <label class="col-sm-4 col-form-label">Password: </label>
                 <div class="col-sm-8">
                     <label>
-                        <input type="password" th:field="*{password}" class="form-control" required minlength="8" maxlength="45"/>
+                        <input type="password" th:field="*{password}" class="form-control" required minlength="5" maxlength="15"/>
                     </label>
                 </div>
             </div>
@@ -64,10 +64,16 @@
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary m-2">Save</button>
-                <button type="button" class="btn btn-secondary m-2">Cancel</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
             </div>
         </div>
     </form>
 </div>
+<script type="text/javascript">
+    function cancelForm(){
+        window.location.replace("[[@{/users}]]");
+    }
+
+</script>
 </body>
 </html>
