@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -27,4 +29,16 @@ public class UserController {
         return "user_form"; //HTML File Name
     }
 
+    @PostMapping("/users/save")//URL Link
+    public String saveUser(User user, RedirectAttributes ra){
+        service.save(user);
+        ra.addFlashAttribute("message", "The user has been saved successfully.");
+        return "redirect:/users"; //Redirects to HTML File Name /users
+    }
+
+    /*@PostMapping("/users/delete")
+    public String deleteUser(User user){
+        service.delete(user);
+        return "redirect/users";
+    }*/
 }

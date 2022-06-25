@@ -15,4 +15,11 @@ public class UserService {
         return (List<User>) repo.findAll();
     }
 
+    public void save(User user) {
+        repo.save(user);
+    }
+
+    /*public void delete(User user) {
+        repo.delete(user);
+    }*/
 }
