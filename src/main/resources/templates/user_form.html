@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>[[${pageTitle}]]</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container-fluid ">
    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
-
-    <div  role="alert" th:text="${message}" th:if="${message}" class="alert alert-success text-center">
-        [[${message}]]
-    </div>
 
     <form th:action="@{/users/save}" method="post" th:object="${user}" style="max-width: 500px; margin: 0 auto;">
         <input type="hidden" th:field="*{id}">
