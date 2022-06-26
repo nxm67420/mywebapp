@@ -4,6 +4,7 @@ package com.mycompany.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,16 +47,22 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             return "user_form";
         } catch (UserNotFoundException e) {
-            ra.addFlashAttribute("message", "The user has been saved successfully.");
+            ra.addFlashAttribute("message", e.getMessage());
             return "redirect:/users"; //Redirects to HTML File Name /users
         }
 
     }
 
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable("id") Integer id,  RedirectAttributes ra){
+        try {
+            service.delete(id);
+            ra.addFlashAttribute("message", "User " + id + " has been deleted.");
+        }
+        catch (UserNotFoundException e) {
+            ra.addFlashAttribute("message", e.getMessage());
+        }
+        return "redirect:/users"; //Redirects to HTML File Name /users
+    }
 
-    /*@PostMapping("/users/delete")
-    public String deleteUser(User user){
-        service.delete(user);
-        return "redirect/users";
-    }*/
 }
